@@ -25,13 +25,18 @@ export interface userDTO{
 export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
+  private customerId:string;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  getCustomerId():string{
+    return this.customerId;
+  }
 
   signup(email: string, name:string, customerId:string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        environment.apiBaseUrl+"/users/create",
+        environment.apiBaseUrl+"users/create",
         {
           email: email,
           name: name,
@@ -55,7 +60,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        environment.apiBaseUrl+"/login",
+        environment.apiBaseUrl+"login",
         {
           email: email,
           password: password,
@@ -109,6 +114,7 @@ export class AuthService {
     this.router.navigate(['/auth']);
     console.log("REMOVING");
     localStorage.removeItem('userData');
+    localStorage.removeItem('customerId');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
@@ -125,7 +131,7 @@ export class AuthService {
   loadCustomers(){
     return this.http
     .get<Customer[]>(
-      environment.apiBaseUrl+"/customer"
+      environment.apiBaseUrl+"customer"
     )
   }
 
@@ -140,6 +146,7 @@ export class AuthService {
     this.autoLogout(expiresIn-new Date().getTime());
     console.log(user);
     localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.setItem('customerId', JSON.stringify(user.customerId));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
