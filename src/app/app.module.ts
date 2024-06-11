@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -18,6 +19,9 @@ import { CoreModule } from './core.module';
     CoreModule,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    provideAnimationsAsync()
+  ],
   // providers: [LoggingService]
 })
 export class AppModule {}

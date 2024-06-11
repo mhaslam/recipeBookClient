@@ -1,9 +1,52 @@
 <div class="row">
-    <div class="col-md-5">
+  <div class="col-md-12">
+    <app-book-list></app-book-list>
+  </div>
+</div>
+<div class="offcanvas-backdrop" #backdrop (click)="closeOffcanvas()"></div>
+<div class="offcanvas offcanvas-start" id="offcanvasScrolling" #offcanvas aria-labelledby="offcanvasScrollingLabel">
+  <!-- <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Book Details</h5>
+    <button type="button" class="btn-close" (click)="closeOffcanvas()" aria-label="Close">&times;</button>
+  </div> -->
+  <div class="offcanvas-body">
+    <button type="button" class="btn-close" (click)="closeOffcanvas()" aria-label="Close">&times;</button>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- 
+<div class="row">
+  <div class="col-md-12">
+    <app-book-list (openBookSidebar)="openOffcanvas()"></app-book-list>
+  </div>
+</div>
+<div class="offcanvas-backdrop" #backdrop (click)="closeOffcanvas()"></div>
+<div class="offcanvas offcanvas-start" id="offcanvasScrolling" #offcanvas aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Book Details</h5>
+    <button type="button" class="btn-close" (click)="closeOffcanvas()" aria-label="Close">&times;</button>
+  </div>
+  <div class="offcanvas-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+ -->
+
+<!-- <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
+
       <app-book-list></app-book-list>
     </div>
-    <div class="col-md-7">
-      <router-outlet></router-outlet>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-  
+   -->

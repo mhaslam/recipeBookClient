@@ -1,0 +1,20 @@
+.image-column {
+  width: 110px;
+}
+
+.image-column img {
+  width: 100px;
+  height: auto;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background-color: #f1f1f1; /* Change the color as per your design */
+}
+
+.clickable-row:active {
+  background-color: #e0e0e0; /* Change the color as per your design */
+}

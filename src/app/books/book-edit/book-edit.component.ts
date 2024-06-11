@@ -11,7 +11,7 @@ import { Book } from '../book.model';
   styleUrl: './book-edit.component.css'
 })
 export class BookEditComponent implements OnInit {
-  id: number;
+  id: string;
   editMode = false;
   bookForm: FormGroup;
 
@@ -24,7 +24,7 @@ export class BookEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
+      this.id = params['id'];
       this.editMode = params['id'] != null;
       this.initForm();
     });
@@ -32,10 +32,10 @@ export class BookEditComponent implements OnInit {
 
   onSubmit() {
     console.log("SAVING...");
-    let saveObs: Observable<Book>;
+    let saveObs: Observable<Book | any>;
 
     if (this.editMode) {
-      //saveObs=this.bookService.updateBook(this.id, this.bookForm.value);
+      saveObs=this.bookService.updateBook(this.id, this.bookForm.value);
     } else {
       saveObs = this.bookService.addBook(this.bookForm.value);
     }
@@ -58,6 +58,7 @@ export class BookEditComponent implements OnInit {
   }
 
   onCancel() {
+    this.bookService.closeSidebar();
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
@@ -65,16 +66,19 @@ export class BookEditComponent implements OnInit {
     let title = '';
     let imageUrl = '';
     let description = '';
+    let color='';
 
     if (this.editMode) {
-      const book = this.bookService.getBook(this.id);
+      const book = this.bookService.getBookById(this.id);
       title = book.title;
+      color = book.color || 'red';
       imageUrl = book.imageUrl;
       description = book.description;
     }
 
     this.bookForm = new FormGroup({
       title: new FormControl(title, Validators.required),
+      color: new FormControl(color),
       imageUrl: new FormControl(imageUrl),
       description: new FormControl(description)    
     });

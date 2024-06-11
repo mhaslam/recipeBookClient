@@ -6,8 +6,32 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+  <!-- Add this to your index.html before the closing body tag -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var offcanvasElements = document.querySelectorAll('.offcanvas');
+
+    offcanvasElements.forEach(function (offcanvasElement) {
+      var showOffcanvas = function () {
+        offcanvasElement.classList.add('show');
+      };
+
+      var hideOffcanvas = function () {
+        offcanvasElement.classList.remove('show');
+      };
+
+      var closeButton = offcanvasElement.querySelector('.btn-close');
+      if (closeButton) {
+        closeButton.addEventListener('click', hideOffcanvas);
+      }
+    });
+  });
+</script>
+
   <app-root></app-root>
 </body>
 </html>
