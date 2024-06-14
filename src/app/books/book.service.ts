@@ -86,14 +86,18 @@ export class BookService {
   }
 
   deleteBook(id: string) {
-    return this.http.delete<void>(`${environment.apiBaseUrl}${localStorage.getItem("customerId")}/books/`+id)
+    return this.http.delete<any>(`${environment.apiBaseUrl}${localStorage.getItem("customerId")}/books/`+id)
     .pipe(
-      tap(resData => {
+      tap(() => {
+        console.log("Here 1");
         const index = this.books.findIndex(book => book.id == id);
+        console.log("Here 2");
         if (index !== -1) {
             this.books.splice(index, 1);
         }
+        console.log("Here 3");
         this.bookChanged.next(this.books.slice());
+        this.closeSidebar(); // Close sidebar after adding a book
       }),
       catchError(error => {
         console.error('Error deleting book '+id, error);

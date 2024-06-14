@@ -33,9 +33,7 @@ export class BookDetailComponent implements OnInit {
 
   onDeleteBook() {
     console.log("deleting book "+this.book.id);
-    this.bookService.deleteBook(this.book.id).subscribe( data =>{
-      console.log("DELETED");
-    });
+    this.bookService.deleteBook(this.book.id).subscribe();
   }
 
 

@@ -88,7 +88,9 @@ export class AuthService {
       _token: string;
       _tokenExpirationDate: string;
     } = JSON.parse(localStorage.getItem('userData'));
+    console.log("USER DATA "+userData)
     if (!userData) {
+      this.logout();
       return;
     }
 

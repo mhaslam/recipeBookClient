@@ -1,0 +1,22 @@
+<!-- app.component.html -->
+<form (ngSubmit)="onSubmit()">
+    <label for="instructions">Instructions:</label>
+    <editor
+      apiKey="tt8ugxuq4jwqtlxhadmlk1l1dmhmej6byk61npkdg34wbat9"
+      [(ngModel)]="instructions"
+      name="instructions"
+      [init]="{
+        height: 300,
+        menubar: false,
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate  mentions  tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+       toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table  | spellcheckdialog | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+
+          
+      }"
+    ></editor>
+    <button type="submit">Submit</button>
+  </form>
+  <!-- 
+  plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+  toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+  -->
